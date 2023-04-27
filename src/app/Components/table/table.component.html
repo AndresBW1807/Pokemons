@@ -1,0 +1,40 @@
+<div xmlns="http://www.w3.org/1999/html">
+  <h3>Listado Pokemon</h3>
+  <div class="functions">
+    <div class="Search">
+      <input #inpu type="text" placeholder="Buscar" (input)="filter($event)">
+      <i class="material-icons">search</i>
+    </div>
+    <button (click)="ad()">
+      <i class="material-icons">add</i>
+      Nuevo
+    </button>
+  </div>
+  <app-form [title]="title" (enviar)="recargar($event)" *ngIf="add"></app-form>
+  <table>
+    <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Imagen</th>
+      <th>Ataque</th>
+      <th>Defensa</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let pokemon of pokemons">
+      <td>{{pokemon.name}}</td>
+      <td><div class="imageCard">
+        <div class="image"><img [src]="pokemon.image"></div>
+      </div></td>
+      <td>{{pokemon.attack}}</td>
+      <td>{{pokemon.defense}}</td>
+      <td><div class="butt">
+        <a (click)="updt(pokemon)"><i class="material-icons">border_color</i></a>
+        <a (click)="del(pokemon)"><i class="material-icons">delete</i></a>
+      </div></td>
+    </tr>
+    </tbody>
+  </table>
+  <app-form [title]="title" [idPokemon]="idPokemon" (enviar)="recargar($event)" *ngIf="update"></app-form>
+</div>

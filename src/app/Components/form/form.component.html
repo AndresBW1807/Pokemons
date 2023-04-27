@@ -1,0 +1,43 @@
+<div class="card">
+  <form [formGroup]="pokemonCreate" (ngSubmit)="pokemonCreate.valid && onsubmit()" #pokeSub="ngForm">
+    <h3>{{title}}</h3>
+    <div>
+      <label>Nombre: </label>
+      <input type="text" id="Nombre" formControlName="name">
+      <div
+        *ngIf="!pokemonCreate.get('name')?.valid && pokemonCreate.get('name')?.touched">
+        <p>* Por favor ingrese un nombre para el pokemon</p>
+      </div>
+    </div>
+    <div>
+      <label>Imagen: </label>
+      <input type="text" id="Imagen" placeholder="url" formControlName="image">
+    </div>
+    <div>
+      <label>Ataque: 0 </label>
+      <input type="range" min="0" max="100" id="Ataque" formControlName="attack">
+      <div class="power">
+        <label>{{pokemonCreate.get('attack')?.value}}</label>
+      </div>
+    </div>
+    <div>
+      <label>Defensa: 0 </label>
+      <input type="range" min="0" max="100" id="Defensa" formControlName="defense">
+      <div class="power">
+        <label>{{pokemonCreate.get('defense')?.value}}</label>
+      </div>
+    </div>
+    <div>
+      <button type="submit" [disabled]="!pokemonCreate.valid">
+        <i class="material-icons">save</i>
+        Guardar
+      </button>
+      <button
+        (click)="cancel()"
+        type="button">
+        <i class="material-icons">close</i>
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>
